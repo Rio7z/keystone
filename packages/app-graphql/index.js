@@ -1,4 +1,5 @@
 const express = require('express');
+import { graphqlUploadExpress } from 'graphql-upload';
 const { GraphQLPlaygroundApp } = require('@keystonejs/app-graphql-playground');
 const validation = require('./validation');
 
@@ -41,7 +42,8 @@ class GraphQLApp {
         new GraphQLPlaygroundApp({ apiPath, graphiqlPath }).prepareMiddleware({ keystone, dev })
       );
     }
-
+    // FIXME: Add graphql-upload middleware
+    app.use(graphqlUploadExpress()); // New!
     // { cors: false } - prevent ApolloServer from overriding Keystone's CORS configuration.
     // https://www.apollographql.com/docs/apollo-server/api/apollo-server.html#ApolloServer-applyMiddleware
     app.use(server.getMiddleware({ path: apiPath, cors: false }));

@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import { GraphQLSchema } from 'graphql';
 import { ApolloServer } from 'apollo-server-express';
+import { graphqlUploadExpress } from 'graphql-upload';
 // @ts-ignore
 import { formatError } from '@keystonejs/keystone/lib/Keystone/format-error';
 import type {
@@ -26,6 +27,7 @@ const addApolloServer = ({
   sessionImplementation?: SessionImplementation;
 }) => {
   const apolloServer = new ApolloServer({
+    uploads: false,
     // FIXME: Support for file handling configuration
     // maxFileSize: 200 * 1024 * 1024,
     // maxFiles: 5,
@@ -53,6 +55,8 @@ const addApolloServer = ({
   });
   // FIXME: Support custom API path via config.graphql.path.
   // Note: Core keystone uses '/admin/api' as the default.
+  // FIXME: add graphql-upload middleware
+  server.use(graphqlUploadExpress()); // New!
   apolloServer.applyMiddleware({ app: server, path: '/api/graphql', cors: false });
 };
 

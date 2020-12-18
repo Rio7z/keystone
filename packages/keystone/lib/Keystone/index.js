@@ -4,6 +4,7 @@ const memoize = require('micro-memoize');
 const falsey = require('falsey');
 const createCorsMiddleware = require('cors');
 const { execute, print } = require('graphql');
+const { GraphQLUpload, graphqlUploadExpress } = require('graphql-upload');
 const {
   resolveAllKeys,
   arrayToObject,
@@ -456,8 +457,10 @@ module.exports = class Keystone {
   createApolloServer({ apolloConfig = {}, schemaName, dev }) {
     // add the Admin GraphQL API
     const server = new ApolloServer({
-      maxFileSize: 200 * 1024 * 1024,
-      maxFiles: 5,
+      uploads: false,
+      // FIXME: File size limits
+      // maxFileSize: 200 * 1024 * 1024,
+      // maxFiles: 5,
       typeDefs: this.getTypeDefs({ schemaName }),
       resolvers: this.getResolvers({ schemaName }),
       context: ({ req }) => ({
@@ -543,6 +546,7 @@ module.exports = class Keystone {
       queries.length > 0 && `type Query { ${queries.join('\n')} }`,
       mutations.length > 0 && `type Mutation { ${mutations.join('\n')} }`,
       subscriptions.length > 0 && `type Subscription { ${subscriptions.join('\n')} }`,
+      'scalar Upload',
     ]
       .filter(s => s)
       .map(s => gql(s));
@@ -565,6 +569,7 @@ module.exports = class Keystone {
         Subscription: objMerge(
           this._providers.map(p => p.getSubscriptionResolvers({ schemaName }))
         ),
+        Upload: GraphQLUpload
       },
       o => Object.entries(o).length > 0
     );
