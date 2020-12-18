@@ -1,5 +1,14 @@
 # @keystonejs/demo-project-meetup
 
+## 6.2.11
+
+### Patch Changes
+
+- [`0dfb63414`](https://github.com/keystonejs/keystone/commit/0dfb6341412c3c7ae60f069d37fa96e0c9adc900) [#4304](https://github.com/keystonejs/keystone/pull/4304) Thanks [@timleslie](https://github.com/timleslie)! - Updated `protectIdenties` from the default `false` to `process.env.NODE_ENV === 'production'`, to provide a better balance of protection and convenience.
+
+- Updated dependencies [[`0dfb63414`](https://github.com/keystonejs/keystone/commit/0dfb6341412c3c7ae60f069d37fa96e0c9adc900)]:
+  - @keystonejs/auth-password@6.0.0
+
 ## 6.2.10
 
 ### Patch Changes

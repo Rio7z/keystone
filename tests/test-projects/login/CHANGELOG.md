@@ -1,5 +1,12 @@
 # @keystonejs/cypress-project-login
 
+## 5.1.25
+
+### Patch Changes
+
+- Updated dependencies [[`0dfb63414`](https://github.com/keystonejs/keystone/commit/0dfb6341412c3c7ae60f069d37fa96e0c9adc900)]:
+  - @keystonejs/auth-password@6.0.0
+
 ## 5.1.24
 
 ### Patch Changes
