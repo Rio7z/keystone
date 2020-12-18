@@ -4,7 +4,7 @@ const memoize = require('micro-memoize');
 const falsey = require('falsey');
 const createCorsMiddleware = require('cors');
 const { execute, print } = require('graphql');
-const { GraphQLUpload, graphqlUploadExpress } = require('graphql-upload');
+const { GraphQLUpload } = require('graphql-upload');
 const {
   resolveAllKeys,
   arrayToObject,
