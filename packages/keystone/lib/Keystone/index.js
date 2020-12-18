@@ -569,7 +569,7 @@ module.exports = class Keystone {
         Subscription: objMerge(
           this._providers.map(p => p.getSubscriptionResolvers({ schemaName }))
         ),
-        Upload: GraphQLUpload
+        Upload: GraphQLUpload,
       },
       o => Object.entries(o).length > 0
     );

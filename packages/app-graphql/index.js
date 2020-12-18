@@ -1,5 +1,5 @@
 const express = require('express');
-import { graphqlUploadExpress } from 'graphql-upload';
+const { graphqlUploadExpress } = require('graphql-upload');
 const { GraphQLPlaygroundApp } = require('@keystonejs/app-graphql-playground');
 const validation = require('./validation');
 
